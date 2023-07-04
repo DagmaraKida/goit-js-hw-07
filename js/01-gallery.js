@@ -39,8 +39,13 @@ const showLargeImage = (event) => {
     // Otworzenie okna modalnego po kliknięciu w element galerii
     const instance = basicLightbox.create(
       `
-		<img width="1280" src="${largeImage}" alt="${imageDescription}">
-	`
+      <img width="1280" src="${largeImage}" alt="${imageDescription}">
+      `,
+      {
+        onClose: (instance) => {
+          galleryElement.removeEventListener("keydown", closeImageWithEscapeKey);
+        },
+      }
     );
     instance.show();
 
